@@ -1,0 +1,1628 @@
+-- Creat the database for NHANES 2013-2014
+CREATE SCHEMA IF NOT EXISTS `NHANES_14`;
+
+USE NHANES_14;
+
+show global variables like 'secure_file_priv';
+
+show global variables like '%secure%';
+
+show variables like 'local_infile';
+-- set global local_infile = 1;
+
+# 1. Import data from csv
+	# 1.1 ALQ_H
+
+CREATE TABLE IF NOT EXISTS ALQ_H
+(
+seqn VARCHAR(6),
+alq101 VARCHAR(5),
+alq110 VARCHAR(5),
+alq120q VARCHAR(5),
+alq120u VARCHAR(5),
+alq130 VARCHAR(5),
+alq141q VARCHAR(5),
+alq141u VARCHAR(5),
+alq151 VARCHAR(5),
+alq160 VARCHAR(5),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/ALQ_H.csv'
+INTO TABLE ALQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.2 BMX_H
+CREATE TABLE IF NOT EXISTS BMX_H
+(
+seqn VARCHAR(6),
+bmdstats VARCHAR(20),
+bmxwt VARCHAR(20),
+bmiwt VARCHAR(20),
+bmxrecum VARCHAR(20),
+bmirecum VARCHAR(20),
+bmxhead VARCHAR(20),
+bmihead VARCHAR(20),
+bmxht VARCHAR(20),
+bmiht VARCHAR(20),
+bmxbmi VARCHAR(20),
+bmdbmic VARCHAR(20),
+bmxleg VARCHAR(20),
+bmileg VARCHAR(20),
+bmxarml VARCHAR(20),
+bmiarml VARCHAR(20),
+bmxarmc VARCHAR(20),
+bmiarmc VARCHAR(20),
+bmxwaist VARCHAR(20),
+bmiwaist VARCHAR(20),
+bmxsad1 VARCHAR(20),
+bmxsad2 VARCHAR(20),
+bmxsad3 VARCHAR(20),
+bmxsad4 VARCHAR(20),
+bmdavsad VARCHAR(20),
+bmdsadcm VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/BMX_H.csv'
+INTO TABLE BMX_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.3 BPQ_H
+CREATE TABLE IF NOT EXISTS BPQ_H
+(
+seqn VARCHAR(6),
+bpq020 VARCHAR(20),
+bpq030 VARCHAR(20),
+bpd035 VARCHAR(20),
+bpq040a VARCHAR(20),
+bpq050a VARCHAR(20),
+bpq056 VARCHAR(20),
+bpd058 VARCHAR(20),
+bpq059 VARCHAR(20),
+bpq080 VARCHAR(20),
+bpq060 VARCHAR(20),
+bpq070 VARCHAR(20),
+bpq090d VARCHAR(20),
+bpq100d VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/BPQ_H.csv'
+INTO TABLE BPQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.4 BPX_H
+CREATE TABLE IF NOT EXISTS BPX_H
+(
+seqn VARCHAR(6),
+peascst1 VARCHAR(20),
+peasctm1 VARCHAR(20),
+peascct1 VARCHAR(20),
+bpxchr VARCHAR(20),
+bpaarm VARCHAR(20),
+bpacsz VARCHAR(20),
+bpxpls VARCHAR(20),
+bpxpuls VARCHAR(20),
+bpxpty VARCHAR(20),
+bpxml1 VARCHAR(20),
+bpxsy1 VARCHAR(20),
+bpxdi1 VARCHAR(20),
+bpaen1 VARCHAR(20),
+bpxsy2 VARCHAR(20),
+bpxdi2 VARCHAR(20),
+bpaen2 VARCHAR(20),
+bpxsy3 VARCHAR(20),
+bpxdi3 VARCHAR(20),
+bpaen3 VARCHAR(20),
+bpxsy4 VARCHAR(20),
+bpxdi4 VARCHAR(20),
+bpaen4 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/BPX_H.csv'
+INTO TABLE BPX_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.5 CBQ_H
+CREATE TABLE IF NOT EXISTS CBQ_H
+(
+seqn VARCHAR(6),
+cbd070 VARCHAR(20),
+cbd090 VARCHAR(20),
+cbd110 VARCHAR(20),
+cbd120 VARCHAR(20),
+cbd130 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/CBQ_H.csv'
+INTO TABLE CBQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.6 CKQ_H
+CREATE TABLE IF NOT EXISTS CKQ_H
+(
+seqn VARCHAR(6),
+ckq010 VARCHAR(20),
+ckq020 VARCHAR(20),
+ckq030 VARCHAR(20),
+ckq040 VARCHAR(20),
+ckd060 VARCHAR(20),
+ckq070q VARCHAR(20),
+ckq070u VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/CKQ_H.csv'
+INTO TABLE CKQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.7 DBQ_H
+CREATE TABLE IF NOT EXISTS DBQ_H
+(
+seqn VARCHAR(6),
+dbq010 VARCHAR(20),
+dbd030 VARCHAR(20),
+dbd041 VARCHAR(20),
+dbd050 VARCHAR(20),
+dbd055 VARCHAR(20),
+dbd061 VARCHAR(20),
+dbq073a VARCHAR(20),
+dbq073b VARCHAR(20),
+dbq073c VARCHAR(20),
+dbq073d VARCHAR(20),
+dbq073e VARCHAR(20),
+dbq073u VARCHAR(20),
+dbq700 VARCHAR(20),
+dbq197 VARCHAR(20),
+dbq223a VARCHAR(20),
+dbq223b VARCHAR(20),
+dbq223c VARCHAR(20),
+dbq223d VARCHAR(20),
+dbq223e VARCHAR(20),
+dbq223u VARCHAR(20),
+dbq229 VARCHAR(20),
+dbq235a VARCHAR(20),
+dbq235b VARCHAR(20),
+dbq235c VARCHAR(20),
+dbq301 VARCHAR(20),
+dbq330 VARCHAR(20),
+dbq360 VARCHAR(20),
+dbq370 VARCHAR(20),
+dbd381 VARCHAR(20),
+dbq390 VARCHAR(20),
+dbq400 VARCHAR(20),
+dbd411 VARCHAR(20),
+dbq421 VARCHAR(20),
+dbq424 VARCHAR(20),
+dbd895 VARCHAR(20),
+dbd900 VARCHAR(20),
+dbd905 VARCHAR(20),
+dbd910 VARCHAR(20),
+cbq596 VARCHAR(20),
+cbq606 VARCHAR(20),
+cbq611 VARCHAR(20),
+cbq505 VARCHAR(20),
+cbq535 VARCHAR(20),
+cbq540 VARCHAR(20),
+cbq545 VARCHAR(20),
+cbq550 VARCHAR(20),
+cbq552 VARCHAR(20),
+cbq580 VARCHAR(20),
+cbq585 VARCHAR(20),
+cbq590 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DBQ_H.csv'
+INTO TABLE DBQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.8 DEMO_H
+CREATE TABLE IF NOT EXISTS DEMO_H
+(
+seqn VARCHAR(6),
+sddsrvyr VARCHAR(20),
+ridstatr VARCHAR(20),
+riagendr VARCHAR(20),
+ridageyr VARCHAR(20),
+ridagemn VARCHAR(20),
+ridreth1 VARCHAR(20),
+ridreth3 VARCHAR(20),
+ridexmon VARCHAR(20),
+ridexagm VARCHAR(20),
+dmqmiliz VARCHAR(20),
+dmqadfc VARCHAR(20),
+dmdborn4 VARCHAR(20),
+dmdcitzn VARCHAR(20),
+dmdyrsus VARCHAR(20),
+dmdeduc3 VARCHAR(20),
+dmdeduc2 VARCHAR(20),
+dmdmartl VARCHAR(20),
+ridexprg VARCHAR(20),
+sialang VARCHAR(20),
+siaproxy VARCHAR(20),
+siaintrp VARCHAR(20),
+fialang VARCHAR(20),
+fiaproxy VARCHAR(20),
+fiaintrp VARCHAR(20),
+mialang VARCHAR(20),
+miaproxy VARCHAR(20),
+miaintrp VARCHAR(20),
+aialanga VARCHAR(20),
+dmdhhsiz VARCHAR(20),
+dmdfmsiz VARCHAR(20),
+dmdhhsza VARCHAR(20),
+dmdhhszb VARCHAR(20),
+dmdhhsze VARCHAR(20),
+dmdhrgnd VARCHAR(20),
+dmdhrage VARCHAR(20),
+dmdhrbr4 VARCHAR(20),
+dmdhredu VARCHAR(20),
+dmdhrmar VARCHAR(20),
+dmdhsedu VARCHAR(20),
+wtint2yr VARCHAR(20),
+wtmec2yr VARCHAR(20),
+sdmvpsu VARCHAR(20),
+sdmvstra VARCHAR(20),
+indhhin2 VARCHAR(20),
+indfmin2 VARCHAR(20),
+indfmpir VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DEMO_H.csv'
+INTO TABLE DEMO_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.9 DIQ_H
+CREATE TABLE IF NOT EXISTS DIQ_H
+(
+seqn VARCHAR(6),
+diq010 VARCHAR(20),
+did040 VARCHAR(20),
+diq160 VARCHAR(20),
+diq170 VARCHAR(20),
+diq172 VARCHAR(20),
+diq175a VARCHAR(20),
+diq175b VARCHAR(20),
+diq175c VARCHAR(20),
+diq175d VARCHAR(20),
+diq175e VARCHAR(20),
+diq175f VARCHAR(20),
+diq175g VARCHAR(20),
+diq175h VARCHAR(20),
+diq175i VARCHAR(20),
+diq175j VARCHAR(20),
+diq175k VARCHAR(20),
+diq175l VARCHAR(20),
+diq175m VARCHAR(20),
+diq175n VARCHAR(20),
+diq175o VARCHAR(20),
+diq175p VARCHAR(20),
+diq175q VARCHAR(20),
+diq175r VARCHAR(20),
+diq175s VARCHAR(20),
+diq175t VARCHAR(20),
+diq175u VARCHAR(20),
+diq175v VARCHAR(20),
+diq175w VARCHAR(20),
+diq175x VARCHAR(20),
+diq180 VARCHAR(20),
+diq050 VARCHAR(20),
+did060 VARCHAR(20),
+diq060u VARCHAR(20),
+diq070 VARCHAR(20),
+diq230 VARCHAR(20),
+diq240 VARCHAR(20),
+did250 VARCHAR(20),
+did260 VARCHAR(20),
+diq260u VARCHAR(20),
+diq275 VARCHAR(20),
+diq280 VARCHAR(20),
+diq291 VARCHAR(20),
+diq300s VARCHAR(20),
+diq300d VARCHAR(20),
+did310s VARCHAR(20),
+did310d VARCHAR(20),
+did320 VARCHAR(20),
+did330 VARCHAR(20),
+did341 VARCHAR(20),
+did350 VARCHAR(20),
+diq350u VARCHAR(20),
+diq360 VARCHAR(20),
+diq080 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DIQ_H.csv'
+INTO TABLE DIQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.10 DPQ_H
+CREATE TABLE IF NOT EXISTS DPQ_H
+(
+seqn VARCHAR(6),
+dpq010 VARCHAR(20),
+dpq020 VARCHAR(20),
+dpq030 VARCHAR(20),
+dpq040 VARCHAR(20),
+dpq050 VARCHAR(20),
+dpq060 VARCHAR(20),
+dpq070 VARCHAR(20),
+dpq080 VARCHAR(20),
+dpq090 VARCHAR(20),
+dpq100 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DPQ_H.csv'
+INTO TABLE DPQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.11 DXX_H
+CREATE TABLE IF NOT EXISTS DXX_H
+(
+seqn VARCHAR(6),
+dxaexsts VARCHAR(20),
+dxahebv VARCHAR(20),
+dxxhea VARCHAR(20),
+dxxhebmc VARCHAR(20),
+dxxhebmd VARCHAR(20),
+dxahetv VARCHAR(20),
+dxxhefat VARCHAR(20),
+dxdhele VARCHAR(20),
+dxxheli VARCHAR(20),
+dxdhetot VARCHAR(20),
+dxdhepf VARCHAR(20),
+dxalabv VARCHAR(20),
+dxxlaa VARCHAR(20),
+dxxlabmc VARCHAR(20),
+dxxlabmd VARCHAR(20),
+dxalatv VARCHAR(20),
+dxxlafat VARCHAR(20),
+dxdlale VARCHAR(20),
+dxxlali VARCHAR(20),
+dxdlatot VARCHAR(20),
+dxdlapf VARCHAR(20),
+dxallbv VARCHAR(20),
+dxxlla VARCHAR(20),
+dxxllbmc VARCHAR(20),
+dxxllbmd VARCHAR(20),
+dxalltv VARCHAR(20),
+dxxllfat VARCHAR(20),
+dxdllle VARCHAR(20),
+dxxllli VARCHAR(20),
+dxdlltot VARCHAR(20),
+dxdllpf VARCHAR(20),
+dxarabv VARCHAR(20),
+dxxraa VARCHAR(20),
+dxxrabmc VARCHAR(20),
+dxxrabmd VARCHAR(20),
+dxaratv VARCHAR(20),
+dxxrafat VARCHAR(20),
+dxdrale VARCHAR(20),
+dxxrali VARCHAR(20),
+dxdratot VARCHAR(20),
+dxdrapf VARCHAR(20),
+dxarlbv VARCHAR(20),
+dxxrla VARCHAR(20),
+dxxrlbmc VARCHAR(20),
+dxxrlbmd VARCHAR(20),
+dxarltv VARCHAR(20),
+dxxrlfat VARCHAR(20),
+dxdrlle VARCHAR(20),
+dxxrlli VARCHAR(20),
+dxdrltot VARCHAR(20),
+dxdrlpf VARCHAR(20),
+dxxlra VARCHAR(20),
+dxxlrbmc VARCHAR(20),
+dxxlrbmd VARCHAR(20),
+dxxrra VARCHAR(20),
+dxxrrbmc VARCHAR(20),
+dxxrrbmd VARCHAR(20),
+dxxtsa VARCHAR(20),
+dxxtsbmc VARCHAR(20),
+dxxtsbmd VARCHAR(20),
+dxxlsa VARCHAR(20),
+dxxlsbmc VARCHAR(20),
+dxxlsbmd VARCHAR(20),
+dxxpea VARCHAR(20),
+dxxpebmc VARCHAR(20),
+dxxpebmd VARCHAR(20),
+dxatrbv VARCHAR(20),
+dxdtra VARCHAR(20),
+dxdtrbmc VARCHAR(20),
+dxdtrbmd VARCHAR(20),
+dxatrtv VARCHAR(20),
+dxxtrfat VARCHAR(20),
+dxdtrle VARCHAR(20),
+dxxtrli VARCHAR(20),
+dxdtrtot VARCHAR(20),
+dxdtrpf VARCHAR(20),
+dxdsta VARCHAR(20),
+dxdstbmc VARCHAR(20),
+dxdstbmd VARCHAR(20),
+dxdstfat VARCHAR(20),
+dxdstle VARCHAR(20),
+dxdstli VARCHAR(20),
+dxdsttot VARCHAR(20),
+dxdstpf VARCHAR(20),
+dxdtoa VARCHAR(20),
+dxdtobmc VARCHAR(20),
+dxdtobmd VARCHAR(20),
+dxdtofat VARCHAR(20),
+dxdtole VARCHAR(20),
+dxdtoli VARCHAR(20),
+dxdtotot VARCHAR(20),
+dxdtopf VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DXX_H.csv'
+INTO TABLE DXX_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.12 HOQ_H
+CREATE TABLE IF NOT EXISTS HOQ_H
+(
+seqn VARCHAR(6),
+hod050 VARCHAR(20),
+hoq065 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/HOQ_H.csv'
+INTO TABLE HOQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.13 HSQ_H
+CREATE TABLE IF NOT EXISTS HSQ_H
+(
+seqn VARCHAR(6),
+hsd010 VARCHAR(20),
+hsq500 VARCHAR(20),
+hsq510 VARCHAR(20),
+hsq520 VARCHAR(20),
+hsq571 VARCHAR(20),
+hsq580 VARCHAR(20),
+hsq590 VARCHAR(20),
+hsaquex VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/HSQ_H.csv'
+INTO TABLE HSQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.14 INQ_H
+CREATE TABLE IF NOT EXISTS INQ_H
+(
+seqn VARCHAR(6),
+inq020 VARCHAR(20),
+inq012 VARCHAR(20),
+inq030 VARCHAR(20),
+inq060 VARCHAR(20),
+inq080 VARCHAR(20),
+inq090 VARCHAR(20),
+inq132 VARCHAR(20),
+inq140 VARCHAR(20),
+inq150 VARCHAR(20),
+ind235 VARCHAR(20),
+indfmmpi VARCHAR(20),
+indfmmpc VARCHAR(20),
+inq244 VARCHAR(20),
+ind247 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/INQ_H.csv'
+INTO TABLE INQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.15 MCQ_H
+CREATE TABLE IF NOT EXISTS MCQ_H
+(
+seqn VARCHAR(6),
+mcq010 VARCHAR(20),
+mcq025 VARCHAR(20),
+mcq035 VARCHAR(20),
+mcq040 VARCHAR(20),
+mcq050 VARCHAR(20),
+agq030 VARCHAR(20),
+mcq053 VARCHAR(20),
+mcq070 VARCHAR(20),
+mcq075 VARCHAR(20),
+mcq080 VARCHAR(20),
+mcq082 VARCHAR(20),
+mcq084 VARCHAR(20),
+mcq086 VARCHAR(20),
+mcq092 VARCHAR(20),
+mcd093 VARCHAR(20),
+mcq149 VARCHAR(20),
+mcq151 VARCHAR(20),
+mcq160a VARCHAR(20),
+mcq180a VARCHAR(20),
+mcq195 VARCHAR(20),
+mcq160n VARCHAR(20),
+mcq180n VARCHAR(20),
+mcq160b VARCHAR(20),
+mcq180b VARCHAR(20),
+mcq160c VARCHAR(20),
+mcq180c VARCHAR(20),
+mcq160d VARCHAR(20),
+mcq180d VARCHAR(20),
+mcq160e VARCHAR(20),
+mcq180e VARCHAR(20),
+mcq160f VARCHAR(20),
+mcq180f VARCHAR(20),
+mcq160g VARCHAR(20),
+mcq180g VARCHAR(20),
+mcq160m VARCHAR(20),
+mcq170m VARCHAR(20),
+mcq180m VARCHAR(20),
+mcq160k VARCHAR(20),
+mcq170k VARCHAR(20),
+mcq180k VARCHAR(20),
+mcq160l VARCHAR(20),
+mcq170l VARCHAR(20),
+mcq180l VARCHAR(20),
+mcq160o VARCHAR(20),
+mcq203 VARCHAR(20),
+mcq206 VARCHAR(20),
+mcq220 VARCHAR(20),
+mcq230a VARCHAR(20),
+mcq230b VARCHAR(20),
+mcq230c VARCHAR(20),
+mcq230d VARCHAR(20),
+mcq240a VARCHAR(20),
+mcq240aa VARCHAR(20),
+mcq240b VARCHAR(20),
+mcq240bb VARCHAR(20),
+mcq240c VARCHAR(20),
+mcq240cc VARCHAR(20),
+mcq240d VARCHAR(20),
+mcq240dd VARCHAR(20),
+mcq240dk VARCHAR(20),
+mcq240e VARCHAR(20),
+mcq240f VARCHAR(20),
+mcq240g VARCHAR(20),
+mcq240h VARCHAR(20),
+mcq240i VARCHAR(20),
+mcq240j VARCHAR(20),
+mcq240k VARCHAR(20),
+mcq240l VARCHAR(20),
+mcq240m VARCHAR(20),
+mcq240n VARCHAR(20),
+mcq240o VARCHAR(20),
+mcq240p VARCHAR(20),
+mcq240q VARCHAR(20),
+mcq240r VARCHAR(20),
+mcq240s VARCHAR(20),
+mcq240t VARCHAR(20),
+mcq240u VARCHAR(20),
+mcq240v VARCHAR(20),
+mcq240w VARCHAR(20),
+mcq240x VARCHAR(20),
+mcq240y VARCHAR(20),
+mcq240z VARCHAR(20),
+mcq300a VARCHAR(20),
+mcq300b VARCHAR(20),
+mcq300c VARCHAR(20),
+mcq365a VARCHAR(20),
+mcq365b VARCHAR(20),
+mcq365c VARCHAR(20),
+mcq365d VARCHAR(20),
+mcq370a VARCHAR(20),
+mcq370b VARCHAR(20),
+mcq370c VARCHAR(20),
+mcq370d VARCHAR(20),
+mcq380 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/MCQ_H.csv'
+INTO TABLE MCQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.16 OHXREF_H
+CREATE TABLE IF NOT EXISTS OHXREF_H
+(
+seqn VARCHAR(6),
+ohdexsts VARCHAR(20),
+ohdrcsts VARCHAR(20),
+oharec VARCHAR(20),
+oharocdt VARCHAR(20),
+oharocgp VARCHAR(20),
+oharocoh VARCHAR(20),
+oharocci VARCHAR(20),
+oharocde VARCHAR(20),
+oharnf VARCHAR(20),
+oharoth VARCHAR(20),
+ohapos VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/OHXREF_H.csv'
+INTO TABLE OHXREF_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.17 OSQ_H
+CREATE TABLE IF NOT EXISTS OSQ_H
+(
+seqn VARCHAR(6),
+osq010a VARCHAR(20),
+osq010b VARCHAR(20),
+osq010c VARCHAR(20),
+osq020a VARCHAR(20),
+osq020b VARCHAR(20),
+osq020c VARCHAR(20),
+osd030aa VARCHAR(20),
+osq040aa VARCHAR(20),
+osd050aa VARCHAR(20),
+osd030ab VARCHAR(20),
+osq040ab VARCHAR(20),
+osd050ab VARCHAR(20),
+osd030ac VARCHAR(20),
+osq040ac VARCHAR(20),
+osd050ac VARCHAR(20),
+osd030ba VARCHAR(20),
+osq040ba VARCHAR(20),
+osd050ba VARCHAR(20),
+osd030bb VARCHAR(20),
+osq040bb VARCHAR(20),
+osd050bb VARCHAR(20),
+osd030bc VARCHAR(20),
+osq040bc VARCHAR(20),
+osd050bc VARCHAR(20),
+osd030bd VARCHAR(20),
+osq040bd VARCHAR(20),
+osd050bd VARCHAR(20),
+osd030be VARCHAR(20),
+osq040be VARCHAR(20),
+osd030bf VARCHAR(20),
+osq040bf VARCHAR(20),
+osd030bg VARCHAR(20),
+osq040bg VARCHAR(20),
+osd030bh VARCHAR(20),
+osq040bh VARCHAR(20),
+osd030bi VARCHAR(20),
+osq040bi VARCHAR(20),
+osd030bj VARCHAR(20),
+osq040bj VARCHAR(20),
+osd030ca VARCHAR(20),
+osq040ca VARCHAR(20),
+osd050ca VARCHAR(20),
+osd030cb VARCHAR(20),
+osq040cb VARCHAR(20),
+osd050cb VARCHAR(20),
+osd030cc VARCHAR(20),
+osq040cc VARCHAR(20),
+osq080 VARCHAR(20),
+osq090a VARCHAR(20),
+osq100a VARCHAR(20),
+osd110a VARCHAR(20),
+osq120a VARCHAR(20),
+osq090b VARCHAR(20),
+osq100b VARCHAR(20),
+osd110b VARCHAR(20),
+osq120b VARCHAR(20),
+osq090c VARCHAR(20),
+osq100c VARCHAR(20),
+osd110c VARCHAR(20),
+osq120c VARCHAR(20),
+osq090d VARCHAR(20),
+osq100d VARCHAR(20),
+osd110d VARCHAR(20),
+osq120d VARCHAR(20),
+osq090e VARCHAR(20),
+osq100e VARCHAR(20),
+osd110e VARCHAR(20),
+osq120e VARCHAR(20),
+osq090f VARCHAR(20),
+osq120f VARCHAR(20),
+osq090g VARCHAR(20),
+osq100g VARCHAR(20),
+osd110g VARCHAR(20),
+osq120g VARCHAR(20),
+osq090h VARCHAR(20),
+osq120h VARCHAR(20),
+osq060 VARCHAR(20),
+osq072 VARCHAR(20),
+osq130 VARCHAR(20),
+osq140q VARCHAR(20),
+osq140u VARCHAR(20),
+osq150 VARCHAR(20),
+osq160a VARCHAR(20),
+osq160b VARCHAR(20),
+osq170 VARCHAR(20),
+osq180 VARCHAR(20),
+osq190 VARCHAR(20),
+osq200 VARCHAR(20),
+osq210 VARCHAR(20),
+osq220 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/OSQ_H.csv'
+INTO TABLE OSQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.18 PAQ_H
+CREATE TABLE IF NOT EXISTS PAQ_H
+(
+seqn VARCHAR(6),
+paq605 VARCHAR(20),
+paq610 VARCHAR(20),
+pad615 VARCHAR(20),
+paq620 VARCHAR(20),
+paq625 VARCHAR(20),
+pad630 VARCHAR(20),
+paq635 VARCHAR(20),
+paq640 VARCHAR(20),
+pad645 VARCHAR(20),
+paq650 VARCHAR(20),
+paq655 VARCHAR(20),
+pad660 VARCHAR(20),
+paq665 VARCHAR(20),
+paq670 VARCHAR(20),
+pad675 VARCHAR(20),
+pad680 VARCHAR(20),
+paq706 VARCHAR(20),
+paq710 VARCHAR(20),
+paq715 VARCHAR(20),
+paq722 VARCHAR(20),
+paq724a VARCHAR(20),
+paq724b VARCHAR(20),
+paq724c VARCHAR(20),
+paq724d VARCHAR(20),
+paq724e VARCHAR(20),
+paq724f VARCHAR(20),
+paq724g VARCHAR(20),
+paq724h VARCHAR(20),
+paq724i VARCHAR(20),
+paq724j VARCHAR(20),
+paq724k VARCHAR(20),
+paq724l VARCHAR(20),
+paq724m VARCHAR(20),
+paq724n VARCHAR(20),
+paq724o VARCHAR(20),
+paq724p VARCHAR(20),
+paq724q VARCHAR(20),
+paq724r VARCHAR(20),
+paq724s VARCHAR(20),
+paq724t VARCHAR(20),
+paq724u VARCHAR(20),
+paq724v VARCHAR(20),
+paq724w VARCHAR(20),
+paq724x VARCHAR(20),
+paq724y VARCHAR(20),
+paq724z VARCHAR(20),
+paq724aa VARCHAR(20),
+paq724ab VARCHAR(20),
+paq724ac VARCHAR(20),
+paq724ad VARCHAR(20),
+paq724ae VARCHAR(20),
+paq724af VARCHAR(20),
+paq724cm VARCHAR(20),
+paq731 VARCHAR(20),
+pad733 VARCHAR(20),
+paq677 VARCHAR(20),
+paq678 VARCHAR(20),
+paq740 VARCHAR(20),
+paq742 VARCHAR(20),
+paq744 VARCHAR(20),
+paq746 VARCHAR(20),
+paq748 VARCHAR(20),
+paq755 VARCHAR(20),
+paq759a VARCHAR(20),
+paq759b VARCHAR(20),
+paq759c VARCHAR(20),
+paq759d VARCHAR(20),
+paq759e VARCHAR(20),
+paq759f VARCHAR(20),
+paq759g VARCHAR(20),
+paq759h VARCHAR(20),
+paq759i VARCHAR(20),
+paq759j VARCHAR(20),
+paq759k VARCHAR(20),
+paq759l VARCHAR(20),
+paq759m VARCHAR(20),
+paq759n VARCHAR(20),
+paq759o VARCHAR(20),
+paq759p VARCHAR(20),
+paq759q VARCHAR(20),
+paq759r VARCHAR(20),
+paq759s VARCHAR(20),
+paq759t VARCHAR(20),
+paq759u VARCHAR(20),
+paq759v VARCHAR(20),
+paq762 VARCHAR(20),
+paq764 VARCHAR(20),
+paq766 VARCHAR(20),
+paq679 VARCHAR(20),
+paq750 VARCHAR(20),
+paq770 VARCHAR(20),
+paq772a VARCHAR(20),
+paq772b VARCHAR(20),
+paq772c VARCHAR(20),
+paaquex VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/PAQ_H.csv'
+INTO TABLE PAQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.19 SLQ_H
+CREATE TABLE IF NOT EXISTS SLQ_H
+(
+seqn VARCHAR(6),
+sld010h VARCHAR(20),
+slq050 VARCHAR(20),
+slq060 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/SLQ_H.csv'
+INTO TABLE SLQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.20 SMQ_H
+CREATE TABLE IF NOT EXISTS SMQ_H
+(
+seqn VARCHAR(6),
+smq020 VARCHAR(20),
+smd030 VARCHAR(20),
+smq040 VARCHAR(20),
+smq050q VARCHAR(20),
+smq050u VARCHAR(20),
+smd055 VARCHAR(20),
+smd057 VARCHAR(20),
+smq078 VARCHAR(20),
+smd641 VARCHAR(20),
+smd650 VARCHAR(20),
+smd093 VARCHAR(20),
+smdupca VARCHAR(20),
+smd100br VARCHAR(255),
+smd100fl VARCHAR(20),
+smd100mn VARCHAR(20),
+smd100ln VARCHAR(20),
+smd100tr VARCHAR(20),
+smd100ni VARCHAR(20),
+smd100co VARCHAR(20),
+smq621 VARCHAR(20),
+smd630 VARCHAR(20),
+smq661 VARCHAR(20),
+smq665a VARCHAR(20),
+smq665b VARCHAR(20),
+smq665c VARCHAR(20),
+smq665d VARCHAR(20),
+smq670 VARCHAR(20),
+smq848 VARCHAR(20),
+smq852q VARCHAR(20),
+smq852u VARCHAR(20),
+smaquex2 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/SMQ_H.csv'
+INTO TABLE SMQ_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.21 TCHOL_H
+CREATE TABLE IF NOT EXISTS TCHOL_H
+(
+seqn VARCHAR(6),
+lbxtc VARCHAR(20),
+lbdtcsi VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/TCHOL_H.csv'
+INTO TABLE TCHOL_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.22 Z-Score
+CREATE TABLE IF NOT EXISTS Z_Score
+(
+age_group_1 VARCHAR(6),
+race_1 VARCHAR(20),
+gender_1 VARCHAR(20),
+BMD_exp VARCHAR(20),
+BMD_sd VARCHAR(20),
+
+PRIMARY KEY (age_group_1,race_1,gender_1)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/Z-Score.csv'
+INTO TABLE Z_Score
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+
+	# 1.23 Variable_List
+CREATE TABLE IF NOT EXISTS Variable_List
+(
+Variable_Name VARCHAR(100),
+Variable_Description TEXT,
+Data_File_Name TEXT,
+DataFile_Description TEXT,
+Begin_Year VARCHAR(20),
+EndYear VARCHAR(20),
+_Component TEXT,
+Use_Constraints TEXT
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/Variable List.csv'
+INTO TABLE Variable_List
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+	# 1.24 Add new data: DXXFRX_H
+CREATE TABLE IF NOT EXISTS DXXFRX_H
+(
+seqn VARCHAR(6),
+dxxprvfx VARCHAR(6),
+dxxfrax1 VARCHAR(20),
+dxxfrax2 VARCHAR(20),
+dxxfrax3 VARCHAR(20),
+dxxfrax4 VARCHAR(20),
+
+PRIMARY KEY (seqn)
+);
+
+LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/NHANES 2013-2014/Data/DXXFRX_H.csv'
+INTO TABLE DXXFRX_H
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+
+# 2. select data
+# Start from ALQ_H
+DROP TABLE IF EXISTS _merging;
+CREATE TABLE _merging
+
+WITH ALQ AS(
+	SELECT seqn AS id, ALQ120Q AS drink_days, ALQ130 AS drink_amount
+	FROM ALQ_H),
+BMX AS(
+	SELECT seqn AS id, BMXBMI AS BMI, BMXHT AS HEIGHT, BMXWT AS WEIGHT
+    FROM BMX_H),
+BPQ AS(
+	SELECT seqn AS id, BPD035, BPD058 AS PRESSURE_CHECK, BPQ020, BPQ050A, BPQ080, BPQ090D
+    FROM BPQ_H),
+BPX AS(
+	SELECT seqn AS id, BPXDI1, BPXDI2, BPXDI3, BPXSY1, BPXSY2, BPXSY3
+	FROM BPX_H),
+CBQ AS(
+	SELECT seqn AS id, CBD070 AS COST_FOOD_GROCERY, CBD090 AS COST_NONFOOD, CBD110 AS COST_FOOD_OTHER, CBD120 AS COST_RESTAURANT, CBD130 AS COST_DELIVERED
+	FROM CBQ_H),
+CKQ AS(
+	SELECT seqn AS id, CKQ010 AS HEAVY_SPORT
+	FROM CKQ_H),
+DBQ AS(
+	SELECT seqn AS id, CBQ590 AS NUTRITION_INFO, DBD900 AS FAST_FOOD, DBQ197
+	FROM DBQ_H),
+DEMO AS(
+	SELECT seqn AS id, DMDEDUC2, DMDHHSIZ AS HOUSEHOLD_SIZE, RIAGENDR AS GENDER, RIDAGEYR AS AGE, RIDRETH3 AS RACE
+	FROM DEMO_H),
+DIQ AS(
+	SELECT seqn AS id, DID040, DIQ010
+	FROM DIQ_H),
+DPQ AS(
+	SELECT seqn AS id, DPQ020
+	FROM DPQ_H),
+DXX AS(
+	SELECT seqn AS id, DXDTOBMD, DXXHEBMD, DXXLABMD, DXXLLBMD, DXXRABMD, DXXRLBMD
+	FROM DXX_H),
+HOQ AS(
+	SELECT seqn AS id, HOD050 AS ROOM, HOQ065 AS HOME_OWNERSHIP
+	FROM HOQ_H),
+HSQ AS(
+	SELECT seqn AS id, HSD010 AS HEALTH_CONDITION
+	FROM HSQ_H),
+INQ AS(
+	SELECT seqn AS id, IND235 AS INCOME, INDFMMPC AS POVERTY_LEVEL_CATEGORY, INDFMMPI AS POVERTY_LEVEL
+	FROM INQ_H),
+MCQ AS(
+	SELECT seqn AS id, MCQ300a AS family_heart, MCQ300c AS family_diabetes
+	FROM MCQ_H),
+OHXREF AS(
+	SELECT seqn AS id, OHAREC
+	FROM OHXREF_H),
+OSQ AS(
+	SELECT seqn AS id, OSQ150 AS FAMILY_OSTEOPOROSIS
+	FROM OSQ_H),
+PAQ AS(
+	SELECT seqn AS id, PAD680 AS SIT_HOUR, PAQ710 AS TV_HOUR, PAQ715 AS COMPUTER_HOUR
+	FROM PAQ_H),
+SLQ AS(
+	SELECT seqn AS id, SLD010H AS SLEEP_HOUR
+	FROM SLQ_H),
+SMQ AS(
+	SELECT seqn AS id, SMD650 AS SMOKE_AMOUNT, SMQ040 AS smoke_now, smq020 AS smoke_100
+	FROM SMQ_H),
+TCHOL AS(
+	SELECT seqn AS id, LBDTCSI
+	FROM TCHOL_H),
+DXXFRX AS(
+	SELECT seqn AS id, dxxprvfx, dxxfrax1, dxxfrax2, dxxfrax3, dxxfrax4
+	FROM DXXFRX_H)
+
+SELECT id, drink_days, DRINK_AMOUNT,
+		HEIGHT, ROUND(WEIGHT,1) AS WEIGHT,
+		BPD035, PRESSURE_CHECK, BPQ020, BPQ050A, BPQ080, BPQ090D,
+		BPXDI1, BPXDI2, BPXDI3, BPXSY1, BPXSY2, BPXSY3,
+		COST_FOOD_GROCERY, COST_NONFOOD, COST_FOOD_OTHER, COST_RESTAURANT, COST_DELIVERED,
+		HEAVY_SPORT,
+		NUTRITION_INFO, FAST_FOOD, DBQ197,
+		DMDEDUC2, HOUSEHOLD_SIZE, GENDER, AGE, RACE,
+		DID040, DIQ010,
+		DPQ020,
+		DXDTOBMD, DXXHEBMD, DXXLABMD, DXXLLBMD, DXXRABMD, DXXRLBMD,
+		ROOM, HOME_OWNERSHIP,
+		HEALTH_CONDITION,
+		INCOME, POVERTY_LEVEL_CATEGORY, POVERTY_LEVEL,
+		family_heart, family_diabetes,
+		OHAREC,
+		FAMILY_OSTEOPOROSIS,
+		SIT_HOUR, TV_HOUR, COMPUTER_HOUR,
+		SLEEP_HOUR,
+		SMOKE_AMOUNT, smoke_now, smoke_100,
+		LBDTCSI,
+        dxxprvfx AS fracture, dxxfrax1 AS frax_hip_w_fracture, dxxfrax2 AS frax_major_w_fracture, 
+        dxxfrax3 AS frax_hip_no_fracture, dxxfrax4 AS frax_major_no_fracture
+
+FROM DEMO
+LEFT JOIN ALQ USING(id)
+LEFT JOIN BMX USING(id)
+LEFT JOIN BPQ USING(id)
+LEFT JOIN BPX USING(id)
+LEFT JOIN CBQ USING(id)
+LEFT JOIN CKQ USING(id)
+LEFT JOIN DBQ USING(id)
+LEFT JOIN DIQ USING(id)
+LEFT JOIN DPQ USING(id)
+LEFT JOIN DXX USING(id)
+LEFT JOIN HOQ USING(id)
+LEFT JOIN HSQ USING(id)
+LEFT JOIN INQ USING(id)
+LEFT JOIN MCQ USING(id)
+LEFT JOIN OHXREF USING(id)
+LEFT JOIN OSQ USING(id)
+LEFT JOIN PAQ USING(id)
+LEFT JOIN SLQ USING(id)
+LEFT JOIN SMQ USING(id)
+LEFT JOIN TCHOL USING(id)
+LEFT JOIN DXXFRX USING(id);
+
+
+
+
+
+# 3. Add custom variable
+	# 3.1 Deal with NULL, refused (forget), average and missing values. Start with temp_1.
+        DROP TEMPORARY TABLE IF EXISTS temp_1;
+		CREATE TEMPORARY TABLE temp_1
+		SELECT
+			id, 
+			age, 
+            ROUND((age-5)/10) AS age_group,
+            gender,
+            race,
+            CASE WHEN DMDEDUC2 = 7 OR DMDEDUC2 = 9 OR DMDEDUC2 = '' OR DMDEDUC2 IS NULL THEN NULL
+				ELSE DMDEDUC2 END AS edu_null,
+                
+            CASE WHEN BPQ020 <> 7 AND BPQ020 <> 9 THEN BPQ020
+				ELSE 2 END AS pressure_confirmed,
+			CASE WHEN BPQ050A = 1 THEN 1
+				ELSE 2 END AS pressure_med,
+			ROUND(((BPXDI1 + BPXDI2 + BPXDI3) / ((BPXDI1 <> 0) + (BPXDI2 <> 0) + (BPXDI3 <> 0)))) AS pressure_low,
+			ROUND(((BPXSY1 + BPXSY2 + BPXSY3) / ((BPXSY1 <> 0) + (BPXSY2 <> 0) + (BPXSY3 <> 0)))) AS pressure_high,
+            CASE WHEN OHAREC = 1 OR OHAREC = 2 OR OHAREC = 3 THEN 1
+				ELSE 0 END AS oral,
+			CASE WHEN LBDTCSI <> '' THEN LBDTCSI
+				ELSE NULL END AS cholesterol_value,
+			CASE WHEN BPQ080 = 1 THEN 1
+				ELSE 2 END AS cholesterol_confirmed,
+			CASE WHEN DIQ010 = 1 OR DIQ010 = 3 THEN 1
+				ELSE 0 END AS diabetes_confirmed,
+			CASE WHEN DPQ020 = 1 OR DPQ020 = 2 OR DPQ020 = 3 THEN 1
+				ELSE 0 END AS depression,
+			CASE WHEN PRESSURE_CHECK <> 7777 AND PRESSURE_CHECK <> 9999 AND PRESSURE_CHECK IS NOT NULL AND PRESSURE_CHECK <> '' THEN PRESSURE_CHECK
+				ELSE 0 END AS PRESSURE_CHECK,
+			CASE WHEN HEAVY_SPORT = 1 THEN 1
+				ELSE 0 END AS HEAVY_SPORT,
+			CASE WHEN HEALTH_CONDITION <> 7 AND HEALTH_CONDITION <> 9 AND HEALTH_CONDITION <> '' AND HEALTH_CONDITION IS NOT NULL THEN HEALTH_CONDITION
+				ELSE NULL END AS HEALTH_CONDITION_null,
+			CASE WHEN FAST_FOOD = 5555 THEN 22
+				WHEN FAST_FOOD <> 7777 AND FAST_FOOD <> 9999 AND FAST_FOOD <> '' AND FAST_FOOD IS NOT NULL THEN FAST_FOOD
+				ELSE NULL END AS FAST_FOOD_null,
+			CASE WHEN NUTRITION_INFO <> 7 AND NUTRITION_INFO <> 9 AND NUTRITION_INFO <> '' AND NUTRITION_INFO IS NOT NULL THEN NUTRITION_INFO
+				ELSE NULL END AS NUTRITION_INFO_null,
+            CASE WHEN DBQ197 = 2 OR DBQ197 = 3 THEN 1
+				ELSE 0 END AS drink_milk,
+			HOUSEHOLD_SIZE,
+            CASE WHEN HEIGHT <> '' THEN HEIGHT
+				ELSE NULL END AS height_null,
+			CASE WHEN WEIGHT <> '' THEN WEIGHT
+				ELSE NULL END AS weight_null,
+			CASE WHEN drink_days <> 999 AND drink_days <> 777 AND drink_days <> '' THEN drink_days
+				 ELSE NULL END AS drink_days_null,
+			CASE WHEN drink_amount <> 999 AND drink_amount <> 777 AND drink_amount <> '' THEN drink_amount
+				 ELSE NULL END AS drink_amount_null,	
+			CASE WHEN COST_FOOD_GROCERY <> 777777 AND COST_FOOD_GROCERY <> 999999 AND COST_FOOD_GROCERY <> '' AND COST_FOOD_GROCERY IS NOT NULL AND COST_FOOD_GROCERY <> 0
+					THEN COST_FOOD_GROCERY
+				 ELSE NULL END AS COST_FOOD_GROCERY_null,
+            CASE WHEN COST_NONFOOD <> 777777 AND COST_NONFOOD <> 999999 AND COST_NONFOOD <> '' AND COST_NONFOOD IS NOT NULL AND COST_NONFOOD <> 0
+					THEN COST_NONFOOD
+				 ELSE NULL END AS COST_NONFOOD_null,            
+            CASE WHEN COST_FOOD_OTHER <> 777777 AND COST_FOOD_OTHER <> 999999 AND COST_FOOD_OTHER <> '' AND COST_FOOD_OTHER IS NOT NULL
+					THEN COST_FOOD_OTHER
+				 ELSE NULL END AS COST_FOOD_OTHER_null,            
+            CASE WHEN COST_RESTAURANT <> 777777 AND COST_RESTAURANT <> 999999 AND COST_RESTAURANT <> '' AND COST_RESTAURANT IS NOT NULL
+					THEN COST_RESTAURANT
+				 ELSE NULL END AS COST_RESTAURANT_null,            
+            CASE WHEN COST_DELIVERED <> 777777 AND COST_DELIVERED <> 999999 AND COST_DELIVERED <> '' AND COST_DELIVERED IS NOT NULL
+					THEN COST_DELIVERED
+				 ELSE NULL END AS COST_DELIVERED_null,
+			CASE WHEN ROOM <> 777 AND ROOM <> 999 AND ROOM <> '' AND ROOM IS NOT NULL THEN ROOM
+				ELSE NULL END AS ROOM_null,
+			CASE WHEN HOME_OWNERSHIP = 1 THEN 1
+				WHEN HOME_OWNERSHIP = 2 THEN 0
+				ELSE NULL END AS home_owned_null,
+			CASE WHEN INCOME = 1 THEN 200
+				WHEN INCOME = 2 THEN 600
+                WHEN INCOME = 3 THEN 1025
+                WHEN INCOME = 4 THEN 1450
+                WHEN INCOME = 5 THEN 1875
+                WHEN INCOME = 6 THEN 2500
+                WHEN INCOME = 7 THEN 3325
+                WHEN INCOME = 8 THEN 4175
+                WHEN INCOME = 9 THEN 5000
+                WHEN INCOME = 10 THEN 5825
+                WHEN INCOME = 11 THEN 7325
+                WHEN INCOME = 12 THEN 10000
+                ELSE NULL END AS INCOME_null,
+			CASE WHEN POVERTY_LEVEL <> '' THEN POVERTY_LEVEL
+				ELSE NULL END AS POVERTY_LEVEL_null,
+			CASE WHEN family_heart = 1 THEN 1
+				WHEN family_heart = 2 THEN 0
+                ELSE NULL END AS family_heart_null, 
+			CASE WHEN family_diabetes = 1 THEN 1
+				WHEN family_diabetes = 2 THEN 0
+				ELSE NULL END AS family_diabetes_null,
+            CASE WHEN FAMILY_OSTEOPOROSIS = 1 THEN 1
+				WHEN FAMILY_OSTEOPOROSIS = 2 THEN 0
+                ELSE NULL END AS FAMILY_OSTEOPOROSIS_null,
+			RAND() AS prob_family_heart,
+            RAND() AS prob_family_diabetes,
+            RAND() AS prob_family_osteoporosis,
+            
+            CASE WHEN COMPUTER_HOUR = 8 THEN 0
+				WHEN COMPUTER_HOUR = 0 THEN 0.5
+                WHEN COMPUTER_HOUR <> 77 AND COMPUTER_HOUR <> 99 AND COMPUTER_HOUR <> '' AND COMPUTER_HOUR IS NOT NULL THEN COMPUTER_HOUR
+				ELSE NULL END AS COMPUTER_HOUR_null,
+                
+            CASE WHEN TV_HOUR = 8 THEN 0
+				WHEN TV_HOUR = 0 THEN 0.5
+                WHEN TV_HOUR <> 77 AND TV_HOUR <> 99 AND TV_HOUR <> '' AND TV_HOUR IS NOT NULL THEN TV_HOUR
+				ELSE NULL END AS TV_HOUR_null,
+                
+			CASE WHEN SIT_HOUR <> 7777 AND SIT_HOUR <> 9999 AND SIT_HOUR <> '' AND SIT_HOUR IS NOT NULL THEN ROUND(SIT_HOUR/60 , 1)
+				ELSE NULL END AS SIT_HOUR_null,
+                
+			CASE WHEN SLEEP_HOUR <> 77 AND SLEEP_HOUR <> 99 AND SLEEP_HOUR <> '' AND SLEEP_HOUR IS NOT NULL THEN SLEEP_HOUR
+				ELSE NULL END AS SLEEP_HOUR_null,
+                
+			CASE WHEN smoke_now = 1 OR smoke_now = 2 THEN 1
+				WHEN smoke_now = 3 THEN 0
+                ELSE NULL END AS smoke_now_null,
+                
+			CASE WHEN smoke_100 = 1 THEN 1
+				WHEN smoke_100 = 2 THEN 0
+                ELSE NULL END AS smoke_100_null,			
+                
+			CASE WHEN SMOKE_AMOUNT <> 777 AND SMOKE_AMOUNT <> 999 AND SMOKE_AMOUNT <> '' AND SMOKE_AMOUNT IS NOT NULL THEN SMOKE_AMOUNT
+				ELSE NULL END AS SMOKE_AMOUNT_null,
+			# For bone density DEX test, I use Total Bone Mineral Density (mg/cm^2)
+			CASE WHEN DXDTOBMD <> '' AND DXDTOBMD IS NOT NULL THEN DXDTOBMD * 1000 
+				ELSE NULL END AS BMD,
+                
+			CASE WHEN race = 3 THEN 1
+				WHEN race = 4 THEN 2
+                ELSE 3 END AS race_bmd,
+                
+			fracture, 
+            CASE WHEN frax_hip_w_fracture IS NOT NULL AND frax_hip_w_fracture <> '' THEN frax_hip_w_fracture
+				ELSE NULL END AS frax_hip_w_fracture_null,
+                
+            CASE WHEN frax_major_w_fracture IS NOT NULL AND frax_major_w_fracture <> '' THEN frax_major_w_fracture
+				ELSE NULL END AS frax_major_w_fracture_null,
+                
+            CASE WHEN frax_hip_no_fracture IS NOT NULL AND frax_hip_no_fracture <> '' THEN frax_hip_no_fracture
+				ELSE NULL END AS frax_hip_no_fracture_null,
+                
+            CASE WHEN frax_major_no_fracture IS NOT NULL AND frax_major_no_fracture <> '' THEN frax_major_no_fracture
+				ELSE NULL END AS frax_major_no_fracture_null,
+                
+			1 AS _one
+
+			    
+
+		FROM
+			_merging;
+
+
+	# 3.2 Not all NULL, refused (forget), average and missing values problems are done. So we need to finalize them in temp_2 and temp_3
+		DROP TEMPORARY TABLE IF EXISTS temp_2;
+		CREATE TEMPORARY TABLE temp_2
+		SELECT
+			*,
+            ROUND(AVG(weight_null) OVER (PARTITION BY gender, age_group),1) AS weight_avg,
+            ROUND(AVG(height_null) OVER (PARTITION BY gender, age_group),1) AS height_avg,
+            
+            ROUND(AVG(edu_null) OVER (PARTITION BY gender, race, age_group)) AS edu_avg,
+            
+            ROUND(AVG(drink_days_null) OVER (PARTITION BY gender, age_group),1) AS drink_days_avg,
+            ROUND(AVG(drink_amount_null) OVER (PARTITION BY gender, age_group),1) AS drink_amount_avg,
+            
+            ROUND(AVG(COST_FOOD_GROCERY_null) OVER (PARTITION BY gender, age_group),1) AS COST_FOOD_GROCERY_avg,
+            ROUND(AVG(COST_NONFOOD_null) OVER (PARTITION BY gender, age_group),1) AS COST_NONFOOD_avg,
+            ROUND(AVG(COST_FOOD_OTHER_null) OVER (PARTITION BY gender, age_group),1) AS COST_FOOD_OTHER_avg,
+            ROUND(AVG(COST_RESTAURANT_null) OVER (PARTITION BY gender, age_group),1) AS COST_RESTAURANT_avg,
+            ROUND(AVG(COST_DELIVERED_null) OVER (PARTITION BY gender, age_group),1) AS COST_DELIVERED_avg,
+            ROUND(AVG(HEALTH_CONDITION_null) OVER (PARTITION BY gender, age_group)) AS HEALTH_CONDITION_avg,
+            
+            ROUND(AVG(fast_food_null) OVER (PARTITION BY gender, age_group),1) AS fast_food_avg,
+            
+            ROUND(AVG(NUTRITION_INFO_null) OVER (PARTITION BY gender, age_group)) AS NUTRITION_INFO_avg,
+            
+            ROUND(AVG(room_null) OVER (PARTITION BY race, age_group),1) AS room_avg,
+            
+            ROUND(AVG(home_owned_null) OVER (PARTITION BY race, age_group)) AS home_owned_avg,
+            
+            CASE WHEN family_heart_null IS NOT NULL THEN family_heart_null
+				WHEN prob_family_heart <= 622 / (622+5003) THEN 1
+                ELSE 0 END AS family_heart,
+                
+			CASE WHEN family_diabetes_null IS NOT NULL THEN family_diabetes_null
+				WHEN prob_family_diabetes <= 2301 / (2301+3351) THEN 1
+                ELSE 0 END AS family_diabetes,
+                
+			CASE WHEN FAMILY_OSTEOPOROSIS_null IS NOT NULL THEN FAMILY_OSTEOPOROSIS_null
+				WHEN prob_FAMILY_OSTEOPOROSIS <= 458 / (458 + 3138) THEN 1
+                ELSE 0 END AS FAMILY_OSTEOPOROSIS
+            
+		FROM temp_1;
+
+
+		DROP TEMPORARY TABLE IF EXISTS temp_3;
+		CREATE TEMPORARY TABLE temp_3
+		SELECT
+			*,
+			
+            CASE WHEN weight_null IS NOT NULL THEN weight_null
+				ELSE weight_avg END AS weight,
+			CASE WHEN height_null IS NOT NULL THEN height_null
+				ELSE height_avg END AS height,
+                
+			CASE WHEN edu_null IS NOT NULL THEN edu_null
+				ELSE edu_avg END AS edu,
+                
+			CASE WHEN drink_days_null IS NOT NULL THEN drink_days_null
+				ELSE drink_days_avg END AS drink_days,
+			CASE WHEN drink_days_null = 0 THEN 0
+				WHEN drink_amount_null IS NOT NULL THEN drink_amount_null
+				ELSE drink_amount_avg END AS drink_amount,
+                
+			CASE WHEN COST_FOOD_GROCERY_null IS NOT NULL THEN COST_FOOD_GROCERY_null
+				ELSE COST_FOOD_GROCERY_avg END AS COST_FOOD_GROCERY,
+			CASE WHEN COST_NONFOOD_null IS NOT NULL THEN COST_NONFOOD_null
+				ELSE COST_NONFOOD_avg END AS COST_NONFOOD,
+			CASE WHEN COST_FOOD_OTHER_null IS NOT NULL THEN COST_FOOD_OTHER_null
+				ELSE COST_FOOD_OTHER_avg END AS COST_FOOD_OTHER,
+			CASE WHEN COST_RESTAURANT_null IS NOT NULL THEN COST_RESTAURANT_null
+				ELSE COST_RESTAURANT_avg END AS COST_RESTAURANT,
+			CASE WHEN COST_DELIVERED_null IS NOT NULL THEN COST_DELIVERED_null
+				ELSE COST_DELIVERED_avg END AS COST_DELIVERED,
+                
+			CASE WHEN HEALTH_CONDITION_null IS NOT NULL THEN HEALTH_CONDITION_null
+				ELSE HEALTH_CONDITION_avg END AS HEALTH_CONDITION,
+                
+  			CASE WHEN fast_food_null IS NOT NULL THEN fast_food_null
+				ELSE fast_food_avg END AS fast_food,
+                
+  			CASE WHEN NUTRITION_INFO_null IS NOT NULL THEN NUTRITION_INFO_null
+				ELSE NUTRITION_INFO_avg END AS NUTRITION_INFO_1234,
+                
+			CASE WHEN room_null IS NOT NULL THEN room_null
+				ELSE room_avg END AS room,
+                
+			CASE WHEN home_owned_null IS NOT NULL THEN home_owned_null
+				ELSE home_owned_avg END AS home_owned,
+                        
+            CASE WHEN fracture = 1 AND frax_hip_w_fracture_null > 1.5* AVG(frax_hip_w_fracture_null) OVER (PARTITION BY _one) THEN 1
+				WHEN fracture = 1 AND frax_major_w_fracture_null > 1.5* AVG(frax_major_w_fracture_null) OVER (PARTITION BY _one) THEN 1
+                WHEN fracture <> 1 AND frax_hip_no_fracture_null > 1.5* AVG(frax_hip_no_fracture_null) OVER (PARTITION BY _one) THEN 1
+                WHEN fracture <> 1 AND frax_major_no_fracture_null > 1.5* AVG(frax_major_no_fracture_null) OVER (PARTITION BY _one) THEN 1
+                ELSE 0 END AS frax_risk
+            
+
+		FROM temp_2;
+
+
+		DROP TEMPORARY TABLE IF EXISTS temp_4;
+		CREATE TEMPORARY TABLE temp_4
+		SELECT
+			*,
+            ROUND(AVG(income_null) OVER (PARTITION BY race, edu, gender, age_group)) AS income_avg,
+            ROUND(AVG(POVERTY_LEVEL_null) OVER (PARTITION BY race, edu, gender, age_group),2) AS POVERTY_LEVEL_avg,
+                
+			ROUND(AVG(COMPUTER_HOUR_null) OVER (PARTITION BY gender, edu, age_group),1) AS COMPUTER_HOUR_avg,
+            
+            ROUND(AVG(TV_HOUR_null) OVER (PARTITION BY gender, edu, age_group),1) AS TV_HOUR_avg,
+            
+            ROUND(AVG(SIT_HOUR_null) OVER (PARTITION BY gender, edu, age_group),1) AS SIT_HOUR_avg,
+            
+            ROUND(AVG(sleep_hour_null) OVER (PARTITION BY age_group)) AS sleep_hour_avg,
+            
+            ROUND(AVG(smoke_now_null) OVER (PARTITION BY gender, edu, age_group)) AS smoke_now_avg,
+            
+            ROUND(AVG(smoke_100_null) OVER (PARTITION BY gender, edu, age_group)) AS smoke_100_avg,
+            
+            ROUND(AVG(SMOKE_AMOUNT_null) OVER (PARTITION BY gender, edu, age_group)) AS SMOKE_AMOUNT_avg,
+            
+			CASE WHEN NUTRITION_INFO_1234 = 1 THEN 1
+				ELSE 0 END AS NUTRITION_INFO
+
+		FROM temp_3;
+        
+		DROP TEMPORARY TABLE IF EXISTS temp_5;
+		CREATE TEMPORARY TABLE temp_5
+		SELECT
+			*,
+			CASE WHEN income_null IS NOT NULL THEN income_null
+				WHEN income_avg IS NOT NULL THEN income_avg
+                ELSE 
+					(SELECT ROUND(AVG(income_null)) FROM temp_1 WHERE edu_null=1)
+				END AS income,
+			CASE WHEN POVERTY_LEVEL_null IS NOT NULL THEN POVERTY_LEVEL_null
+				WHEN POVERTY_LEVEL_avg IS NOT NULL THEN POVERTY_LEVEL_avg
+                ELSE 
+					(SELECT ROUND(AVG(POVERTY_LEVEL_null),2) FROM temp_3 WHERE edu=1)
+				END AS POVERTY_LEVEL,
+			CASE WHEN COMPUTER_HOUR_null IS NOT NULL THEN COMPUTER_HOUR_null
+				ELSE COMPUTER_HOUR_avg END AS COMPUTER_HOUR,
+                
+			CASE WHEN TV_HOUR_null IS NOT NULL THEN TV_HOUR_null
+				ELSE TV_HOUR_avg END AS TV_HOUR,	
+                
+			CASE WHEN SIT_HOUR_null IS NOT NULL THEN SIT_HOUR_null
+				ELSE SIT_HOUR_avg END AS SIT_HOUR,
+                
+			CASE WHEN SLEEP_HOUR_null IS NOT NULL THEN SLEEP_HOUR_null
+				ELSE sleep_HOUR_avg END AS sleep_HOUR,
+                
+			CASE WHEN smoke_now_null IS NOT NULL THEN smoke_now_null
+				ELSE smoke_now_avg END AS smoke_now,
+ 
+ 			CASE WHEN smoke_100_null IS NOT NULL THEN smoke_100_null
+				ELSE smoke_100_avg END AS smoke_100,
+                
+			CASE WHEN smoke_now_null = 0 THEN 0
+				WHEN smoke_now_null IS NULL AND smoke_now_avg = 0 THEN 0
+				WHEN SMOKE_AMOUNT_null IS NOT NULL THEN SMOKE_AMOUNT_null
+				ELSE SMOKE_AMOUNT_avg END AS SMOKE_AMOUNT                
+		FROM temp_4;        
+
+		DROP TEMPORARY TABLE IF EXISTS temp_6;
+		CREATE TEMPORARY TABLE temp_6
+		SELECT
+			*,
+			CASE WHEN POVERTY_LEVEL <= 1.3 THEN 1
+				WHEN POVERTY_LEVEL > 1.3 AND POVERTY_LEVEL<= 1.85 THEN 2
+                WHEN POVERTY_LEVEL > 1.85 THEN 3
+                ELSE NULL END AS POVERTY_LEVEL_CATEGORY
+		FROM temp_5;     
+
+
+	# 3.3 Create custom variable
+		# Create a new table "custom_varibales" that includes new variables
+		DROP TABLE IF EXISTS custom_variables_1;
+		CREATE TABLE custom_variables_1
+		SELECT *, 
+			CASE WHEN pressure_confirmed = 1 OR pressure_med = 1 OR pressure_low > 90 OR pressure_high > 140 THEN 1
+				 WHEN pressure_confirmed IS NULL AND pressure_med IS NULL AND pressure_low IS NULL AND pressure_high IS NULL THEN NULL
+                 ELSE 0 END AS hypertension,
+			CASE WHEN cholesterol_value >= 5.5 OR cholesterol_confirmed = 1 THEN 1
+				 WHEN cholesterol_value IS NULL AND cholesterol_confirmed IS NULL THEN NULL
+                 ELSE 0 END AS cholesterol,
+			diabetes_confirmed AS diabetes,
+            CASE WHEN edu = 4 or edu = 5 THEN 1
+				 WHEN edu = "" THEN NULL
+                 ELSE 0 END AS college,
+			(cost_food_grocery + cost_food_other) AS cost_food,
+            (cost_restaurant + cost_delivered) AS cost_restaurant_and_delivered,
+            (cost_food_grocery + cost_food_other + cost_restaurant + cost_delivered) AS total_cost_food,
+            ROUND((cost_restaurant / (cost_food_grocery + cost_food_other)),3) AS restaurant_ratio,
+			ROUND((cost_delivered / (cost_food_grocery + cost_food_other)),3) AS delivered_ratio,
+            ROUND(((cost_restaurant + cost_delivered) / (cost_food_grocery + cost_food_other)),3) AS restaurant_and_delivered_ratio,
+            ROUND((cost_food_grocery + cost_food_other) / (cost_nonfood + cost_food_grocery + cost_food_other),3) AS food_ratio,
+            ROUND((weight)/POWER(height/100,2),1) AS BMI
+            
+            
+		FROM temp_6;
+			
+	# 3.4 Add BMD references
+		DROP TABLE IF EXISTS custom_variables_2;
+		CREATE TABLE custom_variables_2    
+		SELECT * FROM custom_variables_1 AS c
+		LEFT JOIN z_score AS z
+			ON c.race_bmd = z.race_1 AND c.age_group = z.age_group_1 AND c.gender = z.gender_1;
+            
+	# 3.5 Compute Z-score and add the osteoporosis indicator
+		DROP TABLE IF EXISTS custom_variables_3;
+		CREATE TABLE custom_variables_3    
+		SELECT *,
+			(bmd - bmd_exp)/bmd_sd AS z_score
+        FROM custom_variables_2;    
+
+
+
+# Cleaning the dataset
+	DROP TABLE IF EXISTS nhanes;
+	CREATE TABLE nhanes   
+	SELECT
+		id, 
+        age, 
+        age_group, 
+        gender, 
+        race,
+        weight, 
+        height,         
+        bmi,
+        edu,
+        college,
+        drink_milk, 
+        household_size, 
+        room, 
+        home_owned, 
+		health_condition, 
+        fast_food, 
+        nutrition_info, 
+		pressure_check, 
+        heavy_sport, 
+        family_heart, 
+        family_diabetes, 
+        family_osteoporosis, 
+		computer_hour, 
+        tv_hour, 
+        sit_hour, 
+        sleep_hour, 
+        smoke_now, 
+        smoke_100,
+        SMOKE_AMOUNT, 
+        drink_days, 
+        drink_amount, 
+        cost_food_grocery, 
+        cost_nonfood, 
+        cost_food_other, 
+        cost_restaurant, 
+        cost_delivered, 
+		cost_food, 
+        cost_restaurant_and_delivered, 
+        total_cost_food, 
+        restaurant_ratio, 
+        delivered_ratio, 
+        restaurant_and_delivered_ratio, 
+        food_ratio,
+        
+        income, 
+        poverty_level,
+        poverty_level_category, 
+        
+		depression, 
+        frax_risk, 
+        hypertension, 
+        cholesterol, 
+        diabetes, 
+        oral
+        
+	FROM custom_variables_3
+    
+	WHERE age>=20
+    ORDER BY id;
